@@ -49,14 +49,14 @@ module I18n
         TRUTHY_CHAR = "\001"
         FALSY_CHAR = "\002"
 
-        self.table_name = 'translations'
+        self.table_name = 'spree_global_translations'
 
         serialize :value
         serialize :interpolations, Array
 
         class << self
           def locale(locale)
-            where(:locale => locale.to_s)
+            where(locale_code: locale.to_s)
           end
 
           def lookup(keys, *separator)
@@ -73,7 +73,7 @@ module I18n
           end
 
           def available_locales
-            Translation.select('DISTINCT locale').to_a.map { |t| t.locale.to_sym }
+            Translation.select('DISTINCT locale_code').to_a.map { |t| t.locale_code.to_sym }
           end
         end
 
