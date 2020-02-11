@@ -12,7 +12,7 @@ class I18nActiveRecordMissingTest < I18n::TestCase
   end
 
   test "can persist interpolations" do
-    translation = I18n::Backend::ActiveRecord::Translation.new(:key => 'foo', :value => 'bar', :locale => :en)
+    translation = I18n::Backend::ActiveRecord::Translation.new(key: 'foo', value: 'bar', locale_code: :en)
     translation.interpolations = %w(count name)
     translation.save
     assert translation.valid?
